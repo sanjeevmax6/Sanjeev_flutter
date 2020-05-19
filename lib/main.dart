@@ -87,9 +87,7 @@ class _QuizState extends State<Quiz> {
           backgroundColor: Colors.grey[850],
           leading: GestureDetector(
             onTap: () {},
-            child: Icon(
-                Icons.menu
-            ),
+           
           ),
           actions: <Widget>[
             Padding(
@@ -175,18 +173,28 @@ class _QuizState extends State<Quiz> {
               )
 
         ),
-    floatingActionButton: FloatingActionButton(
-      child: Icon(
+    floatingActionButton: FloatingActionButton.extended(
+      icon: Icon(
         Icons.navigate_next
       ),
+      label: Text(
+          'NEXT QUESTION',
+          style: TextStyle(
+            fontSize: 10.0,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 2.0,
+            fontFamily: 'BalsamiqSans',
+            color: Colors.grey[850],
+            backgroundColor: Colors.amber,
+          ),),
         onPressed: () {
           setState(() {
             if(indexOfQuestion<10) {
               indexOfQuestion += 1;
             }
-            else{
-             indexOfQuestion = 0;
-            }
+            else if(indexOfQuestion == 10){
+              Navigator.push(context, Score());
+              }
 
           });
         },
