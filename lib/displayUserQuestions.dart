@@ -51,10 +51,7 @@ class _DisplayUserQuestionsState extends State<DisplayUserQuestions> {
           centerTitle: true,
           backgroundColor: Colors.grey[850],
           leading: GestureDetector(
-            onTap: () {},
-            child: Icon(
-                Icons.menu
-            ),
+            onTap: () {}
           ),
           actions: <Widget>[
             Padding(
@@ -125,16 +122,31 @@ class _DisplayUserQuestionsState extends State<DisplayUserQuestions> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(
             Icons.navigate_next
         ),
+        label: Text(
+          'NEXT QUESTION',
+          style: TextStyle(
+            fontSize: 10.0,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 2.0,
+            fontFamily: 'BalsamiqSans',
+            color: Colors.grey[850],
+            backgroundColor: Colors.amber,
+          ),),
         onPressed: () {
           setState(() {
+            if(globals.userIndexOfQuestion <= 10){
             globals.userIndexOfQuestion+=1;
             globals.questionIndex+=1;
             globals.answerIndex+=1;
-          });
+            }
+            else if(globals.userIndexOfQuestion == 10){
+              Navigator.push(context, Score());
+            }
+           });
         },
       ),
 
